@@ -137,6 +137,24 @@ python manage.py tailwind build
 ```
 - [More Info](https://django-tailwind.readthedocs.io/en/latest/installation.html)
 
+### Migrate the all the errornuous packages
+```
+python manage.py migrate
+```
+
+### Create a Super User
+```
+python manage.py createsuperuser
+```
+- Give username and password
+
+- To Change password
+```
+python manage.py changepassword username
+```
+
+- We will create models for database in apps.
+
 ### Topics
 - Templates and Static Files
 - jinja - template engine
