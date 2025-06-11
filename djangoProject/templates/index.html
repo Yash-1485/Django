@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block header %}
+    <div class="container flex justify-center items-center w-full min-h-screen bg-black/95 text-gray-200">
+        <h1 class="text-4xl">
+            This is a Homepage.
+        </h1>
+    </div>
+{% endblock header %}
+
+{% comment %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="{% static "style.css" %}">
+</head>
+<body>
+    <h1>This is a Home Page.</h1>
+</body>
+</html> {% endcomment %}
