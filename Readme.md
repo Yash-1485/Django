@@ -137,7 +137,7 @@ python manage.py tailwind build
 ```
 - [More Info](https://django-tailwind.readthedocs.io/en/latest/installation.html)
 
-### Migrate the all the errornuous packages
+### Migrate the all the errornuous packages and also to access the user
 ```
 python manage.py migrate
 ```
@@ -153,7 +153,60 @@ python manage.py createsuperuser
 python manage.py changepassword username
 ```
 
+### Database Models
 - We will create models for database in apps.
+
+- Create a model in any app
+```
+class Chai(models.Model):
+
+    CHAI_CHOICES=[
+        ("ML","MASALA"),
+        ("GN","GINGER"),
+        ("PL","PLAIN"),
+        ("KW","KIWI"),
+        ("EL","ELAICHI")
+    ]
+
+    name=models.CharField(max_length=50)
+    image=models.ImageField(upload_to="chais/")
+    date_added=models.DateTimeField(default=timezone.now)
+    type=models.CharField(max_length=2,choices=CHAI_CHOICES)
+```
+
+- In settings.py
+```
+MEDIA_URL="/media/"
+MEDIA_ROOT=os.path.join(BASE_DIR,"media")
+```
+
+- In urls.py
+```
+from django.conf import settings
+from django.conf.urls.static import static
+
+- add this to urlPatterns
++ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+
+- First create a migration
+```
+python manage.py makemigrations app_name
+```
+
+- Migrate this using
+```
+python manage.py migrate
+```
+
+- Register the model to view the model in admin panel
+```
+from django.contrib import admin
+from .models import Chai
+# Register your models here.
+
+admin.site.register(Chai)
+```
 
 ### Topics
 - Templates and Static Files
@@ -161,3 +214,4 @@ python manage.py changepassword username
 - django apps
 - Adding TailwindCSS
 - Admin panel(super user)
+- Create Models and Urls for Database
