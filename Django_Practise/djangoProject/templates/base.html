@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Practise
+        {% endblock title %}
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    {% comment %} {% block css %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock css %} {% endcomment %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+        <a class="navbar-brand" href="{% url 'home' %}">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item {% if request.path == '/home/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            {% comment %} <li class="nav-item {% if request.path == '/about/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'about' %}">About</a>
+            </li> {% endcomment %}
+            <li class="nav-item {% if request.path == '/course/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'course.home' %}">Course</a>
+            </li>
+            {% comment %} <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li> {% endcomment %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'product.list' %}">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'song.songs' %}">Songs</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <span class="fs-3 text-primary">
+                        Welcome, {{user.username}}
+                    </span>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account.logout' %}">logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account.login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account.signup' %}">Signup</a>
+                </li>
+            {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block js %}{% endblock js %}
+</body>
+</html>

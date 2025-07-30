@@ -1,0 +1,6 @@
+.venv/
+Django+ML/.venv/
+Django+React_Project/client/node_modules/
+Django+React_Project/server/env/
+Django_Practise/.venv/
+Django+MongoDB/.venv/

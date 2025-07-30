@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <title>Upcoming Workshops</title>
+</head>
+
+<body>
+    <h1>Upcoming Workshops</h1>
+    <form method="GET" action=>
+        <input type="text" name="q" placeholder="Search by title" value="{{request.GET.q}}">
+        <button type="submit">Search</button>
+    </form>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Venue</th>
+                <th>Speaker</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for workshop in workshops %}
+                <tr>
+                    <td>
+                        <a href="{% url 'workshops.workshop' id=workshop.id %}">{{workshop.title}}</a>
+                    </td>
+                    <td>{{workshop.date}}</td>
+                    <td>{{workshop.venue}}</td>
+                    <td>{{workshop.speaker_name}}</td>
+                    <td>
+                        <form method="POST" action="{% url 'workshops.delete' id=workshop.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No workshops available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href="{% url 'speakers.speakers' %}">View Speaker Profiles</a>
+</body>
+
+</html>

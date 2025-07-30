@@ -1,0 +1,6 @@
+header nav ul{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 1rem;
+}

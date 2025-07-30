@@ -1,0 +1,14 @@
+<html>
+    <head>
+        <title>
+            Speaker | {{speaker.name}}
+        </title>
+    </head>
+    <body>
+        <h2>{{speaker.name}}</h2>
+        <p>Profession: {{speaker.profession}}</p>
+        <p>{{speaker.bio}}</p>
+        <p>This speaker may be featured in one of our workshops.</p>
+        <a href="{% url 'speakers.speakers' %}">Back to Speakers</a>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+    <form method="GET" action="{% url 'home' %}">
+        {% csrf_token %}
+        <h1>Welcome</h1>
+        <h2>Let's search student</h2>
+        <label for="name">Name</label>
+        <input id="name" class="input" type="text" name="name" placeholder="" value="{{request.GET.name}}">
+        <label for="roll">roll</label>
+        <input id="roll" type="number" name="roll" placeholder="" value="{{request.GET.roll}}">
+        <label for="birthdate">Birthdate</label>
+        <input id="birthdate" type="date" name="birthdate" placeholder="" value="{{request.GET.birthdate}}">
+        <input type="submit">
+    </form>
+    {% if stu %}
+    <h1>Show Data</h1>
+    <table>
+    <tr>
+    <th>ID</th>
+    <th>Roll</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Birth_Date</th>
+    <th>Image</th>
+    <th>Inform</th>
+    </tr>
+    {% for st in stu %}
+    <tr>
+    <td>{{st.id}}</td>
+    <td>{{st.roll}}</td>
+    <td>{{st.name}}</td>
+    <td>{{st.email}}</td>
+    <td><img src="{{ st.image.url }}" alt="{{ st.name }}" width="50" /></td>
+    <td>{{st.dob}}</td>
+    <td>
+        <form action="{% url 'student' st.roll %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="information">
+    </form>
+    </tr>
+    {% endfor %}
+    </table>
+    {% else %}
+    <h1>No Data</h1>
+    {% endif %}
+{% endblock %}

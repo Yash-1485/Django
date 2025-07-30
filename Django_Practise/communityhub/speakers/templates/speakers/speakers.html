@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Speaker Profiles</title>
+    </head>
+    <body>
+        <h1>Speaker Profiles</h1>
+        <form method="GET">
+            <input type="text" name="q" placeholder="Search by name" value="{{request.GET.q}}">
+            <button type="submit">Search</button>
+        </form>
+        <ul>
+            {% for speaker in speakers %}
+                <li>
+                    {{speaker.name}} ({{speaker.profession}}) —
+                    <a href="{% url 'speakers.speaker' id=speaker.id %}">View Details</a>
+                </li>
+            {% empty %}
+                <li>No speakers found.</li>
+            {% endfor %}
+        </ul>
+        <br>
+        <a href="{% url 'workshops.upcoming' %}">View Upcoming Workshops</a>
+    </body>
+</html>

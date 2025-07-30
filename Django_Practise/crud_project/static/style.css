@@ -1,0 +1,9 @@
+header>nav>ul{
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+}
+
+li{
+    display: block;
+}

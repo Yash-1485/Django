@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovieFind</title>
+</head>
+<body>
+    <h1> Home Page </h1>
+    <form action="{% url 'home' %}" method="POST">
+        {% csrf_token %}
+        <label>Title</label><br>
+        <input type="text" name="title" value="{{request.POST.title}}"><br>
+        <label>Year</label><br>
+        <input type="text" name="year" value="{{request.POST.year}}"><br>
+        <label>Director</label><br>
+        <input type="text" name="director" value="{{request.POST.director}}"><br>
+        <button type='submit'> Search </button>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Movie Title</th>
+            <th>Director</th>
+            <th>Year</th>
+            <th>Description</th>
+        </tr>
+        {% for movie in movies %}
+        <tr>
+            <td>{{movie.title}}</td>
+            <td>{{movie.director}}</td>
+            <td>{{movie.year}}</td>
+            <td>{{movie.description}}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No movies found</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

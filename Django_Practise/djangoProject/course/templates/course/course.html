@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Page</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+    <h1>This is a course page</h1>
+    <div>
+        <p>
+            This is a Superman Image
+        </p>
+        <img src="{% static 'images/superman.png' %}" alt="Superman">
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html> {% endcomment %}
+
+{% block title %}Course{% endblock title %}
+
+{% comment %} {% block css %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+{% endblock css %} {% endcomment %}
+
+{% block content %}
+    <div class="container-fluid p-0 text-center">
+        {% comment %} <h1>This is a course page</h1>
+        <div>
+            <p>
+                This is a Superman Image
+            </p>
+            <img src="{% static 'images/superman.png' %}" alt="Superman">
+        </div>
+    </div> {% endcomment %}
+
+    <h1>Dynamic Data Will be Shown Here</h1>
+
+    <div>
+        {% if data %}
+            <p>Course Name: {{data.courseName}}</p>
+            <p>Topic Name: {{data.topicName}}</p>
+            <p>Duration: {{data.duration}}</p>
+        {% else %}
+            <p>No data found</p>
+        {% endif %}
+
+        {% if data.age > 18 %}
+            <p>Behave like an adult</p>
+        {% elif data.age == 18 %}
+            <p>Abhi 18 hai, behave like a teenager</p>
+        {% else %}
+            <p>Chhota hai, behave like a kid</p>
+        {% endif %}
+    </div>
+
+    <div>
+        <h2>Data</h2>
+
+        {% for key,value in data.items %}
+            <p>
+                <span>({{forloop.counter}}.)</span>
+                {{key}} : {{value}}
+            </p>
+        {% empty %}
+            <p>Data is empty</p>
+        {% endfor %}
+    </div>
+{% endblock content %}
+
+{% block js %}
+    <script src="{% static 'js/script.js' %}"></script>
+{% endblock js %}

@@ -1,0 +1,15 @@
+{% extends "home.html" %}
+
+{% block title %}Add Student{% endblock title %}
+
+{% block content %}
+    <h2>Add Student</h2>
+    <form method="POST" action="{% url 'add' %}">
+        {% csrf_token %}
+        Name: <input type="text" name="name"><br><br>
+        Roll: <input type="number" name="roll"><br><br>
+        Email: <input type="email" name="email"><br><br>
+        <input type="submit" value="Add">
+    </form>
+    <a href="{% url 'home' %}">Back to List</a>
+{% endblock content %}

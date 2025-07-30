@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Songs{% endblock title %}
+
+{% block content %}
+    <div class="container-fluid">
+        <h1>Songs</h1>
+        <div class="form mb-3">
+            <form action="{% url "song.songs" %}" method="get">
+                {% csrf_token %}
+                <input type="text" name="song" id="song" placeholder="Song..." value="{{request.GET.song}}">
+                <input type="text" name="artist" id="artist" placeholder="Artist..." value="{{request.GET.artist}}">
+                <input type="text" name="album" id="album" placeholder="Album..." value="{{request.GET.album}}">
+                <input type="number" name="year" id="year" placeholder="Year..." value="{{request.GET.year}}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <table class="table table-hover table-striped table-dark">
+            <thead>
+                <th>Song</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Year</th>
+            </thead>
+            <tbody>
+                {% for song in songs %}
+                    <tr>
+                        <td>{{song.song}}</td>
+                        <td>{{song.artist}}</td>
+                        <td>{{song.album}}</td>
+                        <td>{{song.year}}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4"> <strong>No songs Found</strong> </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

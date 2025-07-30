@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Workshop | {{workshop.title}}</title>
+    </head>
+    <body>
+        <h2>{{workshop.title}}</h2>
+        <p>Date: {{workshop.date}}</p>
+        <p>Venue: {{workshop.venue}} </p>
+        <p>Speaker: {{workshop.speaker_name}} </p>
+        <a href="{% url 'workshops.upcoming' %}">Back to Workshops</a>
+    </body>
+</html>

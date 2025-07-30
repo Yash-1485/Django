@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Student | {{student.name}} {% endblock title %}
+{% block content %}
+<img src="{{student.image.url}}" alt="{{student.name}}" width="150">
+<h1> MY NAME IS {{ student.name }} </h1>
+<h2> MY MAIL ID IS {{ student.email }}</h2>
+<h3> MY ROLL NUMBER IS {{ student.roll }}</h3>
+<a href="{% url 'home' %}">Go Back</a>
+{% endblock %}
